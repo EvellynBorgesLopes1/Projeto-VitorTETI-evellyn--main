@@ -1,9 +1,9 @@
+import { ListScenarioRepository } from './../repository/list.scenario.repository';
 import { Logger } from "@nestjs/common";
-import { ListScenarioRepository } from "../repository";
 export declare class ListScenarioUseCase {
-    private readonly listScenarioRepository;
-    private readonly logger;
-    constructor(listScenarioRepository: ListScenarioRepository, logger: Logger);
+    private readonly ListScenarioRepository;
+    private readonly Logger;
+    constructor(ListScenarioRepository: ListScenarioRepository, Logger: Logger);
     execute(): Promise<{
         id: string;
         title: string;

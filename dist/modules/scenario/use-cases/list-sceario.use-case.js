@@ -11,25 +11,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var ListScenarioUseCase_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ListScenarioUseCase = void 0;
+const list_scenario_repository_1 = require("./../repository/list.scenario.repository");
 const common_1 = require("@nestjs/common");
-const repository_1 = require("../repository");
 let ListScenarioUseCase = ListScenarioUseCase_1 = class ListScenarioUseCase {
-    constructor(listScenarioRepository, logger) {
-        this.listScenarioRepository = listScenarioRepository;
-        this.logger = logger;
+    constructor(ListScenarioRepository, Logger) {
+        this.ListScenarioRepository = ListScenarioRepository;
+        this.Logger = Logger;
     }
     async execute() {
         try {
-            const scenario = await this.listScenarioRepository.listScenario();
-            this.logger.log('Scenario list successfully', ListScenarioUseCase_1.name);
-            return scenario;
+            const scenarios = await this.ListScenarioRepository.listScenario();
+            this.Logger.log('Scenarios retrieved successfully', ListScenarioUseCase_1.name);
+            return scenarios;
         }
         catch (err) {
-            const error = new common_1.ServiceUnavailableException('error list Scenario', {
+            const error = new common_1.ServiceUnavailableException('error list scenarios', {
                 cause: err,
-                description: `Error on list post: ${err.message}` || 'Unknown error ocurred',
+                description: `Error on list scenarios: ${err.message}` || 'Unknown error occurred',
             });
-            this.logger.error(error.message, error.stack);
+            this.Logger.error(error.message, error.stack);
             throw error;
         }
     }
@@ -37,7 +37,7 @@ let ListScenarioUseCase = ListScenarioUseCase_1 = class ListScenarioUseCase {
 exports.ListScenarioUseCase = ListScenarioUseCase;
 exports.ListScenarioUseCase = ListScenarioUseCase = ListScenarioUseCase_1 = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [repository_1.ListScenarioRepository,
+    __metadata("design:paramtypes", [list_scenario_repository_1.ListScenarioRepository,
         common_1.Logger])
 ], ListScenarioUseCase);
 //# sourceMappingURL=list-sceario.use-case.js.map

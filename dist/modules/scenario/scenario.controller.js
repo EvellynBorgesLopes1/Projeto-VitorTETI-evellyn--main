@@ -28,13 +28,13 @@ let ScenarioController = class ScenarioController {
         return this.scenarioService.findAll();
     }
     findOne(id) {
-        return this.scenarioService.findOne(+id);
+        return this.scenarioService.findOne(id);
     }
     update(id, updateScenarioDto) {
-        return this.scenarioService.update(+id, updateScenarioDto);
+        return this.scenarioService.update(id, updateScenarioDto);
     }
     remove(id) {
-        return this.scenarioService.remove(+id);
+        return this.scenarioService.remove(id);
     }
 };
 exports.ScenarioController = ScenarioController;
