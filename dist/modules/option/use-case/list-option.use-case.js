@@ -22,7 +22,7 @@ let ListOptionUseCase = ListOptionUseCase_1 = class ListOptionUseCase {
     async execute() {
         try {
             const option = await this.listOptionRepository.ListOption();
-            this.Logger.log('Scenarios list successfully', ListOptionUseCase_1.name);
+            this.Logger.log('Options list successfully', ListOptionUseCase_1.name);
             return option;
         }
         catch (err) {

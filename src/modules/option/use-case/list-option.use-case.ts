@@ -12,7 +12,7 @@ export class ListOptionUseCase{
     async execute() {
         try {
             const option = await this.listOptionRepository.ListOption();
-            this.Logger.log('Scenarios list successfully', ListOptionUseCase.name);
+            this.Logger.log('Options list successfully', ListOptionUseCase.name);
             return option;
         } catch (err) {
             const error = new ServiceUnavailableException( 'error list option', {

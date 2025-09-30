@@ -1,5 +1,5 @@
 export declare class CreateOptionDto {
     name: string;
-    description?: string;
+    description: string;
     scenarioId: string;
 }

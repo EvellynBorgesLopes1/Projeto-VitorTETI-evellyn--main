@@ -10,8 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateOptionUseCase = void 0;
-const update_option_repository_1 = require("../repository/update-option.repository");
 const common_1 = require("@nestjs/common");
+const repository_1 = require("../repository");
 let UpdateOptionUseCase = class UpdateOptionUseCase {
     constructor(updateOptionRepository, logger) {
         this.updateOptionRepository = updateOptionRepository;
@@ -19,12 +19,12 @@ let UpdateOptionUseCase = class UpdateOptionUseCase {
     }
     async execute(id, data) {
         try {
-            const option = await this.updateOptionRepository.UpdateOption(id, data);
-            this.logger.log('Option with id ${id} updated successfully');
+            const option = await this.updateOptionRepository.UpadateOption(id, data);
+            this.logger.log(`Option with id ${id} updated successfully`);
             return option;
         }
         catch (error) {
-            this.logger.error(Error);
+            this.logger.error(error);
             throw error;
         }
     }
@@ -32,7 +32,7 @@ let UpdateOptionUseCase = class UpdateOptionUseCase {
 exports.UpdateOptionUseCase = UpdateOptionUseCase;
 exports.UpdateOptionUseCase = UpdateOptionUseCase = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [update_option_repository_1.UpdateOptionRepository,
+    __metadata("design:paramtypes", [repository_1.UpdateOptionRepository,
         common_1.Logger])
 ], UpdateOptionUseCase);
 //# sourceMappingURL=update-option.use-case.js.map

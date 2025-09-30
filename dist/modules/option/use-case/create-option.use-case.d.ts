@@ -1,6 +1,6 @@
-import { Logger } from "@nestjs/common";
-import { CreateOptionDto } from "../dto/create-option.dto";
-import { CreateOptionRepository } from "../repository/create-option.repository";
+import { Logger } from '@nestjs/common';
+import { CreateOptionDto } from '../dto/create-option.dto';
+import { CreateOptionRepository } from '../repository';
 export declare class CreateOptionUseCase {
     private readonly createOptionRepository;
     private readonly logger;

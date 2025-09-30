@@ -1,6 +1,6 @@
-import { UpdateOptionDto } from "../dto/update-option.dto";
-import { UpdateOptionRepository } from "../repository/update-option.repository";
-import { Logger } from "@nestjs/common";
+import { Logger } from '@nestjs/common';
+import { UpdateOptionRepository } from '../repository';
+import { UpdateOptionDto } from '../dto/update-option.dto';
 export declare class UpdateOptionUseCase {
     private readonly updateOptionRepository;
     private readonly logger;
