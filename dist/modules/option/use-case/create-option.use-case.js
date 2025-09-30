@@ -1,0 +1,38 @@
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CreateOptionUseCase = void 0;
+const common_1 = require("@nestjs/common");
+const create_option_repository_1 = require("../repository/create-option.repository");
+let CreateOptionUseCase = class CreateOptionUseCase {
+    constructor(createOptionRepository, logger) {
+        this.createOptionRepository = createOptionRepository;
+        this.logger = logger;
+    }
+    async execute(data) {
+        try {
+            const option = await this.createOptionRepository.create(data);
+            this.logger.log(`Option created: ${option.name}`);
+            return option;
+        }
+        catch (error) {
+            this.logger.error(error);
+            throw error;
+        }
+    }
+};
+exports.CreateOptionUseCase = CreateOptionUseCase;
+exports.CreateOptionUseCase = CreateOptionUseCase = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [create_option_repository_1.CreateOptionRepository,
+        common_1.Logger])
+], CreateOptionUseCase);
+//# sourceMappingURL=create-option.use-case.js.map

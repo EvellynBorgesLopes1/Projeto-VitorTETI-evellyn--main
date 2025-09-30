@@ -6,9 +6,9 @@ export declare class UpdateScenarioUseCase {
     private readonly logger;
     constructor(updateScenarioRepository: UpdateScenarioRepository, logger: Logger);
     execute(id: string, data: UpdateScenarioDto): Promise<{
+        id: string;
         title: string;
         description: string | null;
-        id: string;
         createdAt: Date;
     }>;
 }
