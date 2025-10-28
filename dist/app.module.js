@@ -12,12 +12,14 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const scenario_module_1 = require("./modules/scenario/scenario.module");
 const option_module_1 = require("./modules/option/option.module");
+const score_module_1 = require("./modules/score/score.module");
+const criterion_module_1 = require("./modules/criterion/criterion.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [scenario_module_1.ScenarioModule, option_module_1.OptionModule],
+        imports: [scenario_module_1.ScenarioModule, option_module_1.OptionModule, score_module_1.ScoreModule, criterion_module_1.CriterionModule],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
