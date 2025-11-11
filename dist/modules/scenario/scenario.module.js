@@ -10,10 +10,10 @@ exports.ScenarioModule = void 0;
 const common_1 = require("@nestjs/common");
 const scenario_service_1 = require("./scenario.service");
 const scenario_controller_1 = require("./scenario.controller");
-const UsesCases = require("./use-cases");
+const UseCases = require("./use-cases");
 const Repositories = require("./repository");
 const shared_module_1 = require("../../shared/shared.module");
-const useCases = Object.values(UsesCases);
+const useCases = Object.values(UseCases);
 const repositories = Object.values(Repositories);
 let ScenarioModule = class ScenarioModule {
 };

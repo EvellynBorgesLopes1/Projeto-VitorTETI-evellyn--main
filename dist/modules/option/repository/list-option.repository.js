@@ -16,11 +16,16 @@ let ListOptionRepository = class ListOptionRepository {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    async ListOption() {
-        const options = await this.prisma.option.findMany({
-            include: { scenario: true },
+    async list() {
+        const option = await this.prisma.option.findMany({
+            include: {
+                scores: true,
+            }
         });
-        return options;
+        if (!option) {
+            throw new common_1.NotFoundException("Option not found");
+        }
+        return option;
     }
 };
 exports.ListOptionRepository = ListOptionRepository;

@@ -16,9 +16,17 @@ let ListScenarioRepository = class ListScenarioRepository {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    async listScenario() {
-        const scenarios = await this.prisma.scenario.findMany();
-        return scenarios;
+    async list() {
+        const scenario = await this.prisma.scenario.findMany({
+            include: {
+                options: true,
+            }
+        });
+        ;
+        if (!scenario) {
+            throw new common_1.NotFoundException("Scenario not found");
+        }
+        return scenario;
     }
 };
 exports.ListScenarioRepository = ListScenarioRepository;

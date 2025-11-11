@@ -10,40 +10,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ScenarioService = void 0;
-const list_sceario_use_case_1 = require("./use-cases/list-sceario.use-case");
 const common_1 = require("@nestjs/common");
 const use_cases_1 = require("./use-cases");
 let ScenarioService = class ScenarioService {
-    constructor(createScenarioUseCase, listScenarioUseCase, updateScenarioUseCase, DeleteScenarioUseCase, findOneScenarioUseCase) {
+    constructor(createScenarioUseCase, listScenarioUseCase, findoneScenarioUseCase, deleteScenarioUseCase, updateScenarioUseCase) {
         this.createScenarioUseCase = createScenarioUseCase;
         this.listScenarioUseCase = listScenarioUseCase;
+        this.findoneScenarioUseCase = findoneScenarioUseCase;
+        this.deleteScenarioUseCase = deleteScenarioUseCase;
         this.updateScenarioUseCase = updateScenarioUseCase;
-        this.DeleteScenarioUseCase = DeleteScenarioUseCase;
-        this.findOneScenarioUseCase = findOneScenarioUseCase;
     }
     create(data) {
         return this.createScenarioUseCase.execute(data);
     }
     findAll() {
-        return this.listScenarioUseCase.execute();
+        return this.listScenarioUseCase.list();
     }
     findOne(id) {
-        return this.findOneScenarioUseCase.execute(id);
+        return this.findoneScenarioUseCase.findone(id);
     }
     update(id, data) {
-        return this.updateScenarioUseCase.execute(id, data);
+        return this.updateScenarioUseCase.update(id, data);
     }
     remove(id) {
-        return this.DeleteScenarioUseCase.execute(id);
+        return this.deleteScenarioUseCase.delete(id);
     }
 };
 exports.ScenarioService = ScenarioService;
 exports.ScenarioService = ScenarioService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [use_cases_1.CreateScenarioUseCase,
-        list_sceario_use_case_1.ListScenarioUseCase,
-        use_cases_1.UpdateScenarioUseCase,
+        use_cases_1.ListScenarioUseCase,
+        use_cases_1.FindOneScenarioUseCase,
         use_cases_1.DeleteScenarioUseCase,
-        use_cases_1.FindOneScenarioUseCase])
+        use_cases_1.UpdateScenarioUseCase])
 ], ScenarioService);
 //# sourceMappingURL=scenario.service.js.map

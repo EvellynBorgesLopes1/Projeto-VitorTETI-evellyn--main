@@ -16,10 +16,9 @@ let FindOneScenarioRepository = class FindOneScenarioRepository {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    async findOne(id) {
-        return this.prisma.scenario.findUnique({
-            where: { id },
-        });
+    async findone(id) {
+        const scenario = await this.prisma.scenario.findUnique({ where: { id } });
+        return scenario;
     }
 };
 exports.FindOneScenarioRepository = FindOneScenarioRepository;

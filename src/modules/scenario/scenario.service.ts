@@ -1,36 +1,33 @@
-import { ListScenarioUseCase } from './use-cases/list-sceario.use-case';
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { CreateScenarioDto } from './dto/create-scenario.dto';
 import { UpdateScenarioDto } from './dto/update-scenario.dto';
-import { CreateScenarioUseCase,UpdateScenarioUseCase, DeleteScenarioUseCase,FindOneScenarioUseCase} from './use-cases';
+import { CreateScenarioUseCase, ListScenarioUseCase, DeleteScenarioUseCase, FindOneScenarioUseCase, UpdateScenarioUseCase } from './use-cases';
 
 @Injectable()
 export class ScenarioService {
-  constructor(
-    private readonly createScenarioUseCase: CreateScenarioUseCase,
-    private readonly listScenarioUseCase: ListScenarioUseCase,
-    private readonly updateScenarioUseCase: UpdateScenarioUseCase,
-    private readonly DeleteScenarioUseCase: DeleteScenarioUseCase,
-    private readonly findOneScenarioUseCase: FindOneScenarioUseCase,
-  ) {}
-
-  create(data:CreateScenarioDto) {
-    return  this.createScenarioUseCase.execute(data);
-  }
+  constructor(private readonly createScenarioUseCase: CreateScenarioUseCase, 
+    private readonly listScenarioUseCase: ListScenarioUseCase, 
+    private readonly findoneScenarioUseCase: FindOneScenarioUseCase,
+    private readonly deleteScenarioUseCase: DeleteScenarioUseCase,
+    private readonly updateScenarioUseCase: UpdateScenarioUseCase) { }
   
+  create(data: CreateScenarioDto) {
+    return this.createScenarioUseCase.execute(data);
+  }
+
   findAll() {
-    return this.listScenarioUseCase.execute();
+    return this.listScenarioUseCase.list();
   }
 
   findOne(id: string) {
-    return this.findOneScenarioUseCase.execute(id);
+    return this.findoneScenarioUseCase.findone(id);
   }
 
   update(id: string, data: UpdateScenarioDto) {
-    return this.updateScenarioUseCase.execute(id, data);
+    return this.updateScenarioUseCase.update(id, data);
   }
 
   remove(id: string) {
-    return this.DeleteScenarioUseCase.execute(id);
+    return this.deleteScenarioUseCase.delete(id);
   }
 }

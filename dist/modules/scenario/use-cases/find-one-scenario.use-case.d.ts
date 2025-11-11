@@ -1,14 +1,13 @@
-import { Logger } from "@nestjs/common";
-import { FindOneScenarioRepository } from "../repository/find-one-scenario.repository";
+import { Logger, NotFoundException } from '@nestjs/common';
+import { FindOneScenarioRepository } from '../repository/find-one-scenario.repository';
 export declare class FindOneScenarioUseCase {
     private readonly findoneScenarioRepository;
     private readonly logger;
     constructor(findoneScenarioRepository: FindOneScenarioRepository, logger: Logger);
-    execute(id: string): Promise<{
-        id: string;
+    findone(id: string): Promise<{
         title: string;
         description: string | null;
+        id: string;
         createdAt: Date;
-    }>;
-    findOne(id: string): void;
+    } | NotFoundException>;
 }

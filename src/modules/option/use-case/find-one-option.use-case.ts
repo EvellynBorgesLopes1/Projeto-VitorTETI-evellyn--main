@@ -1,22 +1,27 @@
-import { Injectable } from "@nestjs/common";
-import { Logger } from "@nestjs/common";
-import { FindOneOptionRepository } from "../repository";
-
+/* eslint-disable prettier/prettier */
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { FindOneOptionRepository } from '../repository/find-one-option.repository';
 
 
 @Injectable()
 export class FindOneOptionUseCase {
     constructor(
-        private readonly findOneOptionRepository: FindOneOptionRepository ,
+        private readonly findoneOptionRepository: FindOneOptionRepository,
         private readonly logger: Logger,
-    ){}
-    async execute(id:string) {
+    ) {}
+
+    async findone(id:string) {
         try {
-            const option = await this.findOneOptionRepository.findOne(id);
+            const option = await this.findoneOptionRepository.findone(id);
+            this.logger.log("Option found successfully");
+            if (!option) return new NotFoundException("Option not found");
             return option;
         } catch (error) {
-            this.logger.error(Error);
-            throw  error;   
+            if (error instanceof NotFoundException) {
+                this.logger.warn("Option not found");
+            }
+            this.logger.error(error);
+            throw error;
         }
     }
 }

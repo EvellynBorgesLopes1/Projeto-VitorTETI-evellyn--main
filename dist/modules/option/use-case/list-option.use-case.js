@@ -8,37 +8,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var ListOptionUseCase_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ListOptionUseCase = void 0;
 const common_1 = require("@nestjs/common");
-const list_option_repository_1 = require("./../repository/list-option.repository");
-const common_2 = require("@nestjs/common");
-let ListOptionUseCase = ListOptionUseCase_1 = class ListOptionUseCase {
-    constructor(listOptionRepository, Logger) {
+const list_option_repository_1 = require("../repository/list-option.repository");
+let ListOptionUseCase = class ListOptionUseCase {
+    constructor(listOptionRepository, logger) {
         this.listOptionRepository = listOptionRepository;
-        this.Logger = Logger;
+        this.logger = logger;
     }
-    async execute() {
+    async list() {
         try {
-            const option = await this.listOptionRepository.ListOption();
-            this.Logger.log('Options list successfully', ListOptionUseCase_1.name);
+            const option = this.listOptionRepository.list();
+            this.logger.log("Option listed successfully");
             return option;
         }
-        catch (err) {
-            const error = new common_1.ServiceUnavailableException('error list option', {
-                cause: err,
-                description: `Error on list post: ${err.message}` || 'Unknown error occurred',
-            });
-            this.Logger.error(error.message, error.stack);
+        catch (error) {
+            this.logger.error(error);
             throw error;
         }
     }
 };
 exports.ListOptionUseCase = ListOptionUseCase;
-exports.ListOptionUseCase = ListOptionUseCase = ListOptionUseCase_1 = __decorate([
+exports.ListOptionUseCase = ListOptionUseCase = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [list_option_repository_1.ListOptionRepository,
-        common_2.Logger])
+        common_1.Logger])
 ], ListOptionUseCase);
 //# sourceMappingURL=list-option.use-case.js.map

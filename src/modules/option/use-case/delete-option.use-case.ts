@@ -1,23 +1,21 @@
-import { Injectable, Logger } from "@nestjs/common";
-import { DeleteOptionRepository } from "../repository";
-
+import { Injectable, Logger } from '@nestjs/common';
+import { DeleteOptionRepository } from '../repository/delete-option.repository';
 
 @Injectable()
-export class DeleteOptionUseCase{
+export class DeleteOptionUseCase {
     constructor(
         private readonly deleteOptionRepository: DeleteOptionRepository,
         private readonly logger: Logger,
-        ){}
+    ) {}
 
-    async execute(id:string) {
+    async delete(id:string) {
         try {
-            const option = await this.deleteOptionRepository.DeleteOption(id);
-            this.logger.log('Option created: ${Option.name}');
+            const option = await this.deleteOptionRepository.delete(id);
+            this.logger.log("Option deleted successfully");
             return option;
         } catch (error) {
-            this.logger.error(Error);
-            throw  error;
-
+            this.logger.error(error);
+            throw error;
         }
     }
 }

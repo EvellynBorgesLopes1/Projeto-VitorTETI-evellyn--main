@@ -13,13 +13,14 @@ exports.CreateScenarioUseCase = void 0;
 const common_1 = require("@nestjs/common");
 const create_scenario_repository_1 = require("../repository/create-scenario.repository");
 let CreateScenarioUseCase = class CreateScenarioUseCase {
-    constructor(createscenariorepository, logger) {
-        this.createscenariorepository = createscenariorepository;
+    constructor(createScenarioRepository, logger) {
+        this.createScenarioRepository = createScenarioRepository;
         this.logger = logger;
     }
     async execute(data) {
         try {
-            const scenario = await this.createscenariorepository.create(data);
+            const scenario = this.createScenarioRepository.create(data);
+            this.logger.log('Scenario created successfully');
             return scenario;
         }
         catch (error) {

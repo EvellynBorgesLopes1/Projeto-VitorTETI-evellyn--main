@@ -16,10 +16,8 @@ let DeleteOptionRepository = class DeleteOptionRepository {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    async DeleteOption(id) {
-        const option = await this.prisma.option.delete({
-            where: { id },
-        });
+    async delete(id) {
+        const option = await this.prisma.option.delete({ where: { id } });
         return option;
     }
 };

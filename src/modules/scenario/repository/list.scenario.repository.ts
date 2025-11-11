@@ -1,13 +1,17 @@
-import { Injectable } from "@nestjs/common";
-import { PrismaService } from "src/shared/databases/prisma.database";
+import { Injectable, NotFoundException } from "@nestjs/common";
+import { PrismaService } from "../../../shared/databases/prisma.database";
 
 @Injectable()
 export class ListScenarioRepository {
-   
-    constructor(private readonly prisma: PrismaService) {}
+    constructor(private readonly prisma: PrismaService) { }
 
-    async listScenario() {
-        const scenarios = await this.prisma.scenario.findMany();
-        return scenarios;
+    async list(){
+        const scenario = await this.prisma.scenario.findMany({
+            include: {
+                options: true,
+            }
+        });;
+        if (!scenario) {throw new NotFoundException("Scenario not found");}
+        return scenario;
     }
 }

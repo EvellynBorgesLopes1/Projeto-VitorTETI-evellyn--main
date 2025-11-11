@@ -1,42 +1,48 @@
-import { ListScenarioUseCase } from './use-cases/list-sceario.use-case';
 import { CreateScenarioDto } from './dto/create-scenario.dto';
 import { UpdateScenarioDto } from './dto/update-scenario.dto';
-import { CreateScenarioUseCase, UpdateScenarioUseCase, DeleteScenarioUseCase, FindOneScenarioUseCase } from './use-cases';
+import { CreateScenarioUseCase, ListScenarioUseCase, DeleteScenarioUseCase, FindOneScenarioUseCase, UpdateScenarioUseCase } from './use-cases';
 export declare class ScenarioService {
     private readonly createScenarioUseCase;
     private readonly listScenarioUseCase;
+    private readonly findoneScenarioUseCase;
+    private readonly deleteScenarioUseCase;
     private readonly updateScenarioUseCase;
-    private readonly DeleteScenarioUseCase;
-    private readonly findOneScenarioUseCase;
-    constructor(createScenarioUseCase: CreateScenarioUseCase, listScenarioUseCase: ListScenarioUseCase, updateScenarioUseCase: UpdateScenarioUseCase, DeleteScenarioUseCase: DeleteScenarioUseCase, findOneScenarioUseCase: FindOneScenarioUseCase);
+    constructor(createScenarioUseCase: CreateScenarioUseCase, listScenarioUseCase: ListScenarioUseCase, findoneScenarioUseCase: FindOneScenarioUseCase, deleteScenarioUseCase: DeleteScenarioUseCase, updateScenarioUseCase: UpdateScenarioUseCase);
     create(data: CreateScenarioDto): Promise<{
-        id: string;
         title: string;
         description: string | null;
+        id: string;
         createdAt: Date;
     }>;
-    findAll(): Promise<{
-        id: string;
+    findAll(): Promise<({
+        options: {
+            name: string;
+            description: string | null;
+            id: string;
+            scenarioId: string;
+        }[];
+    } & {
         title: string;
         description: string | null;
+        id: string;
         createdAt: Date;
-    }[]>;
+    })[]>;
     findOne(id: string): Promise<{
-        id: string;
         title: string;
         description: string | null;
+        id: string;
         createdAt: Date;
-    }>;
+    } | import("@nestjs/common").NotFoundException>;
     update(id: string, data: UpdateScenarioDto): Promise<{
-        id: string;
         title: string;
         description: string | null;
+        id: string;
         createdAt: Date;
     }>;
     remove(id: string): Promise<{
-        id: string;
         title: string;
         description: string | null;
+        id: string;
         createdAt: Date;
     }>;
 }

@@ -17,10 +17,10 @@ let CreateScenarioRepository = class CreateScenarioRepository {
         this.prisma = prisma;
     }
     async create(data) {
-        const Scenario = await this.prisma.scenario.create({
+        const scenario = await this.prisma.scenario.create({
             data,
         });
-        return Scenario;
+        return scenario;
     }
 };
 exports.CreateScenarioRepository = CreateScenarioRepository;

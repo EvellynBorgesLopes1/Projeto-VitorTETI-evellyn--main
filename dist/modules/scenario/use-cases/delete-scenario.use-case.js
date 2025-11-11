@@ -17,14 +17,14 @@ let DeleteScenarioUseCase = class DeleteScenarioUseCase {
         this.deleteScenarioRepository = deleteScenarioRepository;
         this.logger = logger;
     }
-    async execute(id) {
+    async delete(id) {
         try {
-            const scenario = await this.deleteScenarioRepository.deleteScenario(id);
-            this.logger.log('Scenario created: ${scenario.title}');
+            const scenario = await this.deleteScenarioRepository.delete(id);
+            this.logger.log("Scenario deleted successfully");
             return scenario;
         }
         catch (error) {
-            this.logger.error(Error);
+            this.logger.error(error);
             throw error;
         }
     }

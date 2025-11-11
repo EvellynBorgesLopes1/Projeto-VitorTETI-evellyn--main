@@ -1,18 +1,17 @@
-import { PrismaService } from "src/shared/databases/prisma.database";
+import { PrismaService } from "../../../shared/databases/prisma.database";
 export declare class ListOptionRepository {
     private readonly prisma;
     constructor(prisma: PrismaService);
-    ListOption(): Promise<({
-        scenario: {
+    list(): Promise<({
+        scores: {
             id: string;
-            title: string;
-            description: string | null;
-            createdAt: Date;
-        };
+            optionId: string;
+            criterionId: string;
+        }[];
     } & {
-        id: string;
-        description: string | null;
         name: string;
+        description: string | null;
+        id: string;
         scenarioId: string;
     })[]>;
 }

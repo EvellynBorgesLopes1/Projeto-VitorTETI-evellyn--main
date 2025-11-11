@@ -1,22 +1,21 @@
-import { Injectable, Logger } from "@nestjs/common";
-import { DeleteScenarioRepository } from "../repository/delete-scenario.repository";
-import { CreateScenarioDto } from "../dto/create-scenario.dto";
+import { Injectable, Logger } from '@nestjs/common';
+import { DeleteScenarioRepository } from '../repository/delete-scenario.repository';
+
 @Injectable()
-export class DeleteScenarioUseCase{
+export class DeleteScenarioUseCase {
     constructor(
         private readonly deleteScenarioRepository: DeleteScenarioRepository,
         private readonly logger: Logger,
-        ){}
+    ) {}
 
-    async execute(id:string) {
+    async delete(id:string) {
         try {
-            const scenario = await this.deleteScenarioRepository.deleteScenario(id);
-            this.logger.log('Scenario created: ${scenario.title}');
+            const scenario = await this.deleteScenarioRepository.delete(id);
+            this.logger.log("Scenario deleted successfully");
             return scenario;
         } catch (error) {
-            this.logger.error(Error);
-            throw  error;
-
+            this.logger.error(error);
+            throw error;
         }
     }
 }

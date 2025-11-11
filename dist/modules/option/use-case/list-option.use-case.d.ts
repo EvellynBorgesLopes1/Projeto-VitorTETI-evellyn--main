@@ -1,20 +1,19 @@
-import { ListOptionRepository } from './../repository/list-option.repository';
 import { Logger } from '@nestjs/common';
+import { ListOptionRepository } from '../repository/list-option.repository';
 export declare class ListOptionUseCase {
     private readonly listOptionRepository;
-    private readonly Logger;
-    constructor(listOptionRepository: ListOptionRepository, Logger: Logger);
-    execute(): Promise<({
-        scenario: {
+    private readonly logger;
+    constructor(listOptionRepository: ListOptionRepository, logger: Logger);
+    list(): Promise<({
+        scores: {
             id: string;
-            title: string;
-            description: string | null;
-            createdAt: Date;
-        };
+            optionId: string;
+            criterionId: string;
+        }[];
     } & {
-        id: string;
-        description: string | null;
         name: string;
+        description: string | null;
+        id: string;
         scenarioId: string;
     })[]>;
 }

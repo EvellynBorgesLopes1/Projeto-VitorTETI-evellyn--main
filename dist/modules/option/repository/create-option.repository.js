@@ -17,15 +17,10 @@ let CreateOptionRepository = class CreateOptionRepository {
         this.prisma = prisma;
     }
     async create(data) {
-        return this.prisma.option.create({
-            data: {
-                name: data.name,
-                description: data.description,
-                scenario: {
-                    connect: { id: data.scenarioId },
-                },
-            },
+        const option = await this.prisma.option.create({
+            data,
         });
+        return option;
     }
 };
 exports.CreateOptionRepository = CreateOptionRepository;

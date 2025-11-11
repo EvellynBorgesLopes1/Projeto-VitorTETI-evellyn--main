@@ -10,21 +10,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateScenarioUseCase = void 0;
-const update_scenario_repository_1 = require("../repository/update-scenario.repository");
 const common_1 = require("@nestjs/common");
+const update_scenario_repository_1 = require("../repository/update-scenario.repository");
 let UpdateScenarioUseCase = class UpdateScenarioUseCase {
     constructor(updateScenarioRepository, logger) {
         this.updateScenarioRepository = updateScenarioRepository;
         this.logger = logger;
     }
-    async execute(id, data) {
+    async update(id, data) {
         try {
-            const scenario = await this.updateScenarioRepository.updateScenario(id, data);
-            this.logger.log('Scenario with id ${id} updated successfully');
+            const scenario = await this.updateScenarioRepository.update(id, data);
+            this.logger.log("Scenario updated successfully");
             return scenario;
         }
         catch (error) {
-            this.logger.error(Error);
+            this.logger.error(error);
             throw error;
         }
     }

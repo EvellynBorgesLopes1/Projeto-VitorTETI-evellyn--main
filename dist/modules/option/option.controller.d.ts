@@ -5,35 +5,39 @@ export declare class OptionController {
     private readonly optionService;
     constructor(optionService: OptionService);
     create(createOptionDto: CreateOptionDto): Promise<{
-        id: string;
-        description: string | null;
         name: string;
+        description: string | null;
+        id: string;
         scenarioId: string;
     }>;
     findAll(): Promise<({
-        scenario: {
+        scores: {
             id: string;
-            title: string;
-            description: string | null;
-            createdAt: Date;
-        };
+            optionId: string;
+            criterionId: string;
+        }[];
     } & {
-        id: string;
-        description: string | null;
         name: string;
+        description: string | null;
+        id: string;
         scenarioId: string;
     })[]>;
-    findOne(id: string): Promise<{
-        id: string;
-        description: string | null;
+    findOne(id: string): Promise<import("@nestjs/common").NotFoundException | {
         name: string;
+        description: string | null;
+        id: string;
         scenarioId: string;
     }>;
-    update(id: string, updateOptionDto: UpdateOptionDto): Promise<void>;
-    remove(id: string): Promise<{
-        id: string;
-        description: string | null;
+    update(id: string, updateOptionDto: UpdateOptionDto): Promise<{
         name: string;
+        description: string | null;
+        id: string;
+        scenarioId: string;
+    }>;
+    remove(id: string): Promise<{
+        name: string;
+        description: string | null;
+        id: string;
         scenarioId: string;
     }>;
 }

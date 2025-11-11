@@ -1,27 +1,23 @@
-import { Injectable, ServiceUnavailableException } from '@nestjs/common';
-import { ListOptionRepository } from './../repository/list-option.repository';
-import { Logger } from '@nestjs/common';
+/* eslint-disable prettier/prettier */
+import { Injectable, Logger } from '@nestjs/common';
+import { ListOptionRepository } from '../repository/list-option.repository';
 
 
 @Injectable()
-export class ListOptionUseCase{
+export class ListOptionUseCase {
     constructor(
         private readonly listOptionRepository: ListOptionRepository,
-        private readonly Logger: Logger,
-        ){}
-    async execute() {
+        private readonly logger: Logger,
+    ) {}
+
+    async list(){
         try {
-            const option = await this.listOptionRepository.ListOption();
-            this.Logger.log('Options list successfully', ListOptionUseCase.name);
+            const option = this.listOptionRepository.list();
+            this.logger.log("Option listed successfully");
             return option;
-        } catch (err) {
-            const error = new ServiceUnavailableException( 'error list option', {
-                cause: err,
-                description: `Error on list post: ${err.message}` || 'Unknown error occurred',
-            });
-            this.Logger.error(error.message, error.stack);
+        } catch (error) {
+            this.logger.error(error);
             throw error;
         }
     }
 }
-           

@@ -8,34 +8,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var ListScenarioUseCase_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ListScenarioUseCase = void 0;
-const list_scenario_repository_1 = require("./../repository/list.scenario.repository");
 const common_1 = require("@nestjs/common");
-let ListScenarioUseCase = ListScenarioUseCase_1 = class ListScenarioUseCase {
-    constructor(ListScenarioRepository, Logger) {
-        this.ListScenarioRepository = ListScenarioRepository;
-        this.Logger = Logger;
+const list_scenario_repository_1 = require("../repository/list.scenario.repository");
+let ListScenarioUseCase = class ListScenarioUseCase {
+    constructor(listScenarioRepository, logger) {
+        this.listScenarioRepository = listScenarioRepository;
+        this.logger = logger;
     }
-    async execute() {
+    async list() {
         try {
-            const scenarios = await this.ListScenarioRepository.listScenario();
-            this.Logger.log('Scenarios retrieved successfully', ListScenarioUseCase_1.name);
-            return scenarios;
+            const scenario = this.listScenarioRepository.list();
+            this.logger.log("Scenario listed successfully");
+            return scenario;
         }
-        catch (err) {
-            const error = new common_1.ServiceUnavailableException('error list scenarios', {
-                cause: err,
-                description: `Error on list scenarios: ${err.message}` || 'Unknown error occurred',
-            });
-            this.Logger.error(error.message, error.stack);
+        catch (error) {
+            this.logger.error(error);
             throw error;
         }
     }
 };
 exports.ListScenarioUseCase = ListScenarioUseCase;
-exports.ListScenarioUseCase = ListScenarioUseCase = ListScenarioUseCase_1 = __decorate([
+exports.ListScenarioUseCase = ListScenarioUseCase = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [list_scenario_repository_1.ListScenarioRepository,
         common_1.Logger])

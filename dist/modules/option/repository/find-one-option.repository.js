@@ -16,10 +16,9 @@ let FindOneOptionRepository = class FindOneOptionRepository {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    async findOne(id) {
-        return this.prisma.option.findUnique({
-            where: { id },
-        });
+    async findone(id) {
+        const option = await this.prisma.option.findUnique({ where: { id } });
+        return option;
     }
 };
 exports.FindOneOptionRepository = FindOneOptionRepository;

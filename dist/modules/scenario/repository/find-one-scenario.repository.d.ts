@@ -1,11 +1,11 @@
-import { PrismaService } from "src/shared/databases/prisma.database";
+import { PrismaService } from "../../../shared/databases/prisma.database";
 export declare class FindOneScenarioRepository {
     private readonly prisma;
     constructor(prisma: PrismaService);
-    findOne(id: string): Promise<{
-        id: string;
+    findone(id: string): Promise<{
         title: string;
         description: string | null;
+        id: string;
         createdAt: Date;
     }>;
 }

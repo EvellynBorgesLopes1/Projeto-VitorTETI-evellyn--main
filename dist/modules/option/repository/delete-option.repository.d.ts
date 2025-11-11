@@ -1,11 +1,11 @@
-import { PrismaService } from "src/shared/databases/prisma.database";
+import { PrismaService } from "../../../shared/databases/prisma.database";
 export declare class DeleteOptionRepository {
     private readonly prisma;
     constructor(prisma: PrismaService);
-    DeleteOption(id: string): Promise<{
-        id: string;
-        description: string | null;
+    delete(id: string): Promise<{
         name: string;
+        description: string | null;
+        id: string;
         scenarioId: string;
     }>;
 }

@@ -10,16 +10,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateScenarioRepository = void 0;
-const prisma_database_1 = require("../../../shared/databases/prisma.database");
 const common_1 = require("@nestjs/common");
+const prisma_database_1 = require("../../../shared/databases/prisma.database");
 let UpdateScenarioRepository = class UpdateScenarioRepository {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    async updateScenario(id, data) {
+    async update(id, data) {
         const scenario = await this.prisma.scenario.update({
             where: { id },
-            data,
+            data
         });
         return scenario;
     }

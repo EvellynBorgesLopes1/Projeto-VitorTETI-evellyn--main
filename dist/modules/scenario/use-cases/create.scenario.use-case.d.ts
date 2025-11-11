@@ -1,14 +1,14 @@
-import { Logger } from "@nestjs/common";
-import { CreateScenarioDto } from "../dto/create-scenario.dto";
-import { CreateScenarioRepository } from "../repository/create-scenario.repository";
+import { Logger } from '@nestjs/common';
+import { CreateScenarioRepository } from '../repository/create-scenario.repository';
+import { CreateScenarioDto } from '../dto/create-scenario.dto';
 export declare class CreateScenarioUseCase {
-    private readonly createscenariorepository;
+    private readonly createScenarioRepository;
     private readonly logger;
-    constructor(createscenariorepository: CreateScenarioRepository, logger: Logger);
+    constructor(createScenarioRepository: CreateScenarioRepository, logger: Logger);
     execute(data: CreateScenarioDto): Promise<{
-        id: string;
         title: string;
         description: string | null;
+        id: string;
         createdAt: Date;
     }>;
 }

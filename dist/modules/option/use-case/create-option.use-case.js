@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateOptionUseCase = void 0;
 const common_1 = require("@nestjs/common");
-const repository_1 = require("../repository");
+const create_option_repository_1 = require("../repository/create-option.repository");
 let CreateOptionUseCase = class CreateOptionUseCase {
     constructor(createOptionRepository, logger) {
         this.createOptionRepository = createOptionRepository;
@@ -19,8 +19,8 @@ let CreateOptionUseCase = class CreateOptionUseCase {
     }
     async execute(data) {
         try {
-            const option = await this.createOptionRepository.create(data);
-            this.logger.log(`Option created: ${option.name}`);
+            const option = this.createOptionRepository.create(data);
+            this.logger.log('Optio created successfully');
             return option;
         }
         catch (error) {
@@ -32,7 +32,7 @@ let CreateOptionUseCase = class CreateOptionUseCase {
 exports.CreateOptionUseCase = CreateOptionUseCase;
 exports.CreateOptionUseCase = CreateOptionUseCase = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [repository_1.CreateOptionRepository,
+    __metadata("design:paramtypes", [create_option_repository_1.CreateOptionRepository,
         common_1.Logger])
 ], CreateOptionUseCase);
 //# sourceMappingURL=create-option.use-case.js.map

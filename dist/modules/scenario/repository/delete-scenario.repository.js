@@ -16,11 +16,9 @@ let DeleteScenarioRepository = class DeleteScenarioRepository {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    async deleteScenario(id) {
-        const Scenario = await this.prisma.scenario.delete({
-            where: { id },
-        });
-        return Scenario;
+    async delete(id) {
+        const scenario = await this.prisma.scenario.delete({ where: { id } });
+        return scenario;
     }
 };
 exports.DeleteScenarioRepository = DeleteScenarioRepository;

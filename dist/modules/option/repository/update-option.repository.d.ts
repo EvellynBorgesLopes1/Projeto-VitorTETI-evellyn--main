@@ -1,7 +1,12 @@
-import { PrismaService } from '../../../shared/databases/prisma.database';
-import { UpdateOptionDto } from 'src/modules/option/dto/update-option.dto';
+import { PrismaService } from "../../../shared/databases/prisma.database";
+import { UpdateOptionDto } from "../dto/update-option.dto";
 export declare class UpdateOptionRepository {
     private readonly prisma;
     constructor(prisma: PrismaService);
-    UpadateOption(id: string, data: UpdateOptionDto): Promise<void>;
+    update(id: string, data: UpdateOptionDto): Promise<{
+        name: string;
+        description: string | null;
+        id: string;
+        scenarioId: string;
+    }>;
 }

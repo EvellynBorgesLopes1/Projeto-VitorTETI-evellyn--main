@@ -1,23 +1,26 @@
-import { Injectable, Logger } from "@nestjs/common";
-import { FindOneScenarioRepository } from "../repository/find-one-scenario.repository";
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { FindOneScenarioRepository } from '../repository/find-one-scenario.repository';
+
 
 @Injectable()
 export class FindOneScenarioUseCase {
     constructor(
         private readonly findoneScenarioRepository: FindOneScenarioRepository,
         private readonly logger: Logger,
-        ){}
+    ) {}
 
-    async execute(id:string) {
+    async findone(id:string) {
         try {
-            const scenario = await this.findoneScenarioRepository.findOne(id);
+            const scenario = await this.findoneScenarioRepository.findone(id);
+            this.logger.log("Scenario found successfully");
+            if (!scenario) return new NotFoundException("Scenario not found");
             return scenario;
         } catch (error) {
-            this.logger.error(Error);
-            throw  error;
+            if (error instanceof NotFoundException) {
+                this.logger.warn("Scenario not found");
+            }
+            this.logger.error(error);
+            throw error;
         }
-    }
-    findOne(id: string) {
-        throw new Error("Method not implemented.");
     }
 }

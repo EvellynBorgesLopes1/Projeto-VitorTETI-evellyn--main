@@ -11,20 +11,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DeleteOptionUseCase = void 0;
 const common_1 = require("@nestjs/common");
-const repository_1 = require("../repository");
+const delete_option_repository_1 = require("../repository/delete-option.repository");
 let DeleteOptionUseCase = class DeleteOptionUseCase {
     constructor(deleteOptionRepository, logger) {
         this.deleteOptionRepository = deleteOptionRepository;
         this.logger = logger;
     }
-    async execute(id) {
+    async delete(id) {
         try {
-            const option = await this.deleteOptionRepository.DeleteOption(id);
-            this.logger.log('Option created: ${Option.name}');
+            const option = await this.deleteOptionRepository.delete(id);
+            this.logger.log("Option deleted successfully");
             return option;
         }
         catch (error) {
-            this.logger.error(Error);
+            this.logger.error(error);
             throw error;
         }
     }
@@ -32,7 +32,7 @@ let DeleteOptionUseCase = class DeleteOptionUseCase {
 exports.DeleteOptionUseCase = DeleteOptionUseCase;
 exports.DeleteOptionUseCase = DeleteOptionUseCase = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [repository_1.DeleteOptionRepository,
+    __metadata("design:paramtypes", [delete_option_repository_1.DeleteOptionRepository,
         common_1.Logger])
 ], DeleteOptionUseCase);
 //# sourceMappingURL=delete-option.use-case.js.map

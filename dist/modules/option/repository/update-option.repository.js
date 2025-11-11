@@ -16,17 +16,12 @@ let UpdateOptionRepository = class UpdateOptionRepository {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    async UpadateOption(id, data) {
+    async update(id, data) {
         const option = await this.prisma.option.update({
             where: { id },
-            data: {
-                name: data.name,
-                description: data.description,
-                scenario: {
-                    connect: { id: data.scenarioId },
-                },
-            },
+            data
         });
+        return option;
     }
 };
 exports.UpdateOptionRepository = UpdateOptionRepository;

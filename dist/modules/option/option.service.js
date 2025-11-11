@@ -13,36 +13,36 @@ exports.OptionService = void 0;
 const common_1 = require("@nestjs/common");
 const use_case_1 = require("./use-case");
 let OptionService = class OptionService {
-    constructor(deleteOptionUseCase, updateOptionUseCase, findOneOptionUseCase, listOptionUseCase, createOptionUseCase) {
+    constructor(createOptionUseCase, listOptionUseCase, findoneOptionUseCase, deleteOptionUseCase, updateOptionUseCase) {
+        this.createOptionUseCase = createOptionUseCase;
+        this.listOptionUseCase = listOptionUseCase;
+        this.findoneOptionUseCase = findoneOptionUseCase;
         this.deleteOptionUseCase = deleteOptionUseCase;
         this.updateOptionUseCase = updateOptionUseCase;
-        this.findOneOptionUseCase = findOneOptionUseCase;
-        this.listOptionUseCase = listOptionUseCase;
-        this.createOptionUseCase = createOptionUseCase;
     }
     create(data) {
         return this.createOptionUseCase.execute(data);
     }
     findAll() {
-        return this.listOptionUseCase.execute();
+        return this.listOptionUseCase.list();
     }
     findOne(id) {
-        return this.findOneOptionUseCase.execute(id);
+        return this.findoneOptionUseCase.findone(id);
     }
     update(id, data) {
-        return this.updateOptionUseCase.execute(id, data);
+        return this.updateOptionUseCase.update(id, data);
     }
     remove(id) {
-        return this.deleteOptionUseCase.execute(id);
+        return this.deleteOptionUseCase.delete(id);
     }
 };
 exports.OptionService = OptionService;
 exports.OptionService = OptionService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [use_case_1.DeleteOptionUseCase,
-        use_case_1.UpdateOptionUseCase,
-        use_case_1.FindOneOptionUseCase,
+    __metadata("design:paramtypes", [use_case_1.CreateOptionUseCase,
         use_case_1.ListOptionUseCase,
-        use_case_1.CreateOptionUseCase])
+        use_case_1.FindOneOptionUseCase,
+        use_case_1.DeleteOptionUseCase,
+        use_case_1.UpdateOptionUseCase])
 ], OptionService);
 //# sourceMappingURL=option.service.js.map

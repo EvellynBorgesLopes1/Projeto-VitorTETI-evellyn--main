@@ -17,18 +17,21 @@ let FindOneScenarioUseCase = class FindOneScenarioUseCase {
         this.findoneScenarioRepository = findoneScenarioRepository;
         this.logger = logger;
     }
-    async execute(id) {
+    async findone(id) {
         try {
-            const scenario = await this.findoneScenarioRepository.findOne(id);
+            const scenario = await this.findoneScenarioRepository.findone(id);
+            this.logger.log("Scenario found successfully");
+            if (!scenario)
+                return new common_1.NotFoundException("Scenario not found");
             return scenario;
         }
         catch (error) {
-            this.logger.error(Error);
+            if (error instanceof common_1.NotFoundException) {
+                this.logger.warn("Scenario not found");
+            }
+            this.logger.error(error);
             throw error;
         }
-    }
-    findOne(id) {
-        throw new Error("Method not implemented.");
     }
 };
 exports.FindOneScenarioUseCase = FindOneScenarioUseCase;
